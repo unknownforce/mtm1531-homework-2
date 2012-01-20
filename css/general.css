@@ -1,0 +1,23 @@
+@charset "UTF-8";
+/* CSS Document */
+
+form{
+	width:200px;
+	height:130px;
+}
+
+input {
+	float:right;	
+	margin-top:7px;
+}
+
+
+label, button {
+	display:inline-block;	
+	margin-top: 10px;
+}
+
+button {
+	display:block;	
+	margin-top: 10px;
+}

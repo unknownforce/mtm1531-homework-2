@@ -5,6 +5,7 @@ var_dump($_POST);
 <head>
 	<meta charset="utf-8">
 	<title>Forms</title>
+	<link href="css/general.css" rel="stylesheet">
 </head>
 
 <body>
@@ -28,21 +29,29 @@ var_dump($_POST);
 </form>
 	
 	
-
-<?php if ($_POST['function'] == 'add') : ?>
-	<?php $addtotal = $_POST['number1'] + $_POST['number2']; ?>
 	
-	<?php elseif ($_POST['function'] == 'subtract') : ?>
-		<?php $mintotal = $_POST['number1'] - $_POST['number2']; ?>
-	<?php elseif ($_POST['function'] == 'multiply') : ?>	
-		<?php $timestotal = $_POST['number1'] * $_POST['number2']; ?>
-		
-	<?php else : ?>
-		<?php $divtotal = $_POST['number1'] / $_POST['number2']; ?>
-
+<?php if (!empty($_POST['number1']) && !empty($_POST['number2'])) : ?>
+	<?php if ($_POST['function'] == 'add') : ?>
+        <?php $subtotal = $_POST['number1'] + $_POST['number2']; ?>
+        
+        <?php elseif ($_POST['function'] == 'subtract') : ?>
+            <?php $subtotal = $_POST['number1'] - $_POST['number2']; ?>
+        <?php elseif ($_POST['function'] == 'multiply') : ?>	
+            <?php $subtotal = $_POST['number1'] * $_POST['number2']; ?>
+            
+        <?php else : ?>
+        <?php $subtotal = $_POST['number1'] / $_POST['number2']; ?>
+    
+    <?php endif; ?>
+    
 <?php endif; ?>
 
-<p>Your Total: $<?php echo $addtotal; ?><?php echo $mintotal; ?><?php echo $timestotal; ?><?php echo $divtotal; ?> </p>
+<?php
+	$taxes = ($subtotal * 0.13) + $subtotal;
+	$total = number_format($taxes, 2, '.', '');
+?>
+
+<p><strong>Your Total:</strong> $<?php echo round($total, 2); ?></p>
 
 
 
